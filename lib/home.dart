@@ -13,9 +13,18 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+   getUser() {
+    var user =FirebaseAuth.instance.currentUser;
+  }
+  @override
+  void initState(){
+    getUser();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final name ='User64563';
+    final email ='User64563@gmail.com';
     final userImg ='userimg.png';
     return Scaffold( 
       appBar: AppBar(
@@ -246,6 +255,7 @@ class _HomeState extends State<Home> {
                   MyDrawerHeader(
                     userImg: userImg,
                     name: name,
+                    email: email,
                   ),
                   const SizedBox(height: 16),
                   buildMenuItem(
@@ -297,6 +307,7 @@ class _HomeState extends State<Home> {
   Widget MyDrawerHeader({
     required String userImg,
     required String name,
+    required String email,
    })=> InkWell(
      child:Container(
       color: Colors.purple,
@@ -316,6 +327,17 @@ class _HomeState extends State<Home> {
              style: TextStyle(
              color: Colors.white,
              fontSize:25),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                email,
+             style: TextStyle(
+             color: Colors.white,
+             fontSize:20),
               ),
             ],
           ),
@@ -360,6 +382,3 @@ class _HomeState extends State<Home> {
   }
 
 }
-
-
-
